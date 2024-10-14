@@ -1,39 +1,26 @@
-﻿namespace PopulationModels.UI.ViewModels
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace PopulationModels.UI.ViewModels;
+
+public abstract class ModelParameter : ObservableObject
 {
-    public class ModelParameter : BaseModelParameter
+    protected double _value;
+        
+    public string Name { get; }
+    public string? Description { get; set; }
+    public virtual double Value { get => _value; set => SetProperty(ref _value, value); }
+
+        
+    protected ModelParameter(string name, double defaultValue)
     {
-        public double MaxValue { get; private init; }
-        public double MinValue { get; private init; }
-
-        public override double Value
-        {
-            get => _value;
-            set
-            {
-                if (value > MaxValue || value < MinValue)
-                {
-                    SetProperty(ref _value, defaultValue);
-                    throw new ArgumentOutOfRangeException(nameof(Value), $"Parameter '{Name}' should have value in range [{MinValue}, {MaxValue}]. Given value {value}.");
-                }
-
-                SetProperty(ref _value, value);
-            }
-        }
-
-        public ModelParameter(string name, double defaultValue = 0, double minValue = double.NegativeInfinity, double maxValue = double.PositiveInfinity)
-            : base(name, defaultValue)
-        {
-            if (maxValue < minValue)
-                throw new ArgumentException($"MinValue ({minValue}) should be less then MaxValue ({maxValue}).");
-            if (defaultValue > maxValue || defaultValue < minValue)
-                throw new ArgumentOutOfRangeException(nameof(defaultValue), $"DefaultValue ({defaultValue}) should be less then MaxValue ({maxValue}) and greater the MinValue ({minValue}).");
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException(nameof(name));
-
-            MinValue = minValue;
-            MaxValue = maxValue;
-            Value = defaultValue;
-        }
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentNullException(nameof(name));
+        Name = name;
+        _value = defaultValue;
     }
 
+        
+    public override string ToString() => $"{Name}: {_value}";
+
+    public static implicit operator double(ModelParameter p) => p._value;
 }

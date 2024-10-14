@@ -1,50 +1,40 @@
 ﻿using System.Linq;
 
-using PopulationModels.UI.Models;
+namespace PopulationModels.UI.ViewModels;
 
-namespace PopulationModels.UI.ViewModels
+public class MainWindowViewModel : ViewModelBase
 {
-    public partial class MainWindowViewModel : ViewModelBase
+    public EnumModelParameter TimeStep { get; } = new("Δt", 1, [0.1, 0.01, 1e-3, 1e-4, 1e-5, 1e-6]);
+    public EnumModelParameter MaxTime { get; } = new("max T", 2, [0.5, 1, 2, 5, 10, 15, 20, 25, 50]);
+    
+
+    private int selectedOdeModelIndex;
+
+    private readonly IOdeModel[] odeModels = 
+    [
+        new BazykinModelA(),
+        new LotkaVolterraModel()
+    ]; 
+
+    public int SelectedOdeModelIndex
     {
-        public EnumModelParameter TimeStep { get; private init; } = new("Δt", 0.1, 0.01, 1e-3, 1e-4, 1e-5, 1e-6);
-        public EnumModelParameter MaxTime { get; private init; } = new("max T", 0.5, 1, 2, 5, 10, 20);
-
-
-        private int selectedOdeModelIndex = 0;
-
-        private readonly IOdeModel[] odeModels = 
-        [
-            new LotkaVolterraModel(),
-            new BazykinModelA()
-        ]; 
-
-        public int SelectedOdeModelIndex
+        get => selectedOdeModelIndex;
+        set 
         {
-            get => selectedOdeModelIndex;
-            set 
-            {
-                SetProperty(ref selectedOdeModelIndex, value);
-                OnPropertyChanging(nameof(SelectedOdeModel));
-                OnPropertyChanged(nameof(SelectedOdeModel));
-            }
+            SetProperty(ref selectedOdeModelIndex, value);
+            OnPropertyChanging(nameof(SelectedOdeModel));
+            OnPropertyChanged(nameof(SelectedOdeModel));
         }
+    }
 
-        public IOdeModel SelectedOdeModel => odeModels[selectedOdeModelIndex];
+    public IOdeModel SelectedOdeModel => odeModels[selectedOdeModelIndex];
 
-        public IEnumerable<string> KnownOdeModels => odeModels.Select(x => x.Name);
+    public IEnumerable<string> KnownOdeModels => odeModels.Select(x => x.Name);
+    
 
-
-
-
-        public MainWindowViewModel()
-        {
-            TimeStep.PropertyChanged += InternalPropertyChanged;
-            MaxTime.PropertyChanged += InternalPropertyChanged;
-        }
-        
-        private void InternalPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(e);
-        }
+    public MainWindowViewModel()
+    {
+        SetInternalPropertyChangedHandlers(TimeStep, MaxTime);
+        SetInternalPropertyChangedHandlers(odeModels);
     }
 }

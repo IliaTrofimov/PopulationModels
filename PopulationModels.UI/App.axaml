@@ -11,5 +11,67 @@
   
     <Application.Styles>
         <FluentTheme />
+        
+        <Style Selector="Window">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        
+        <Style Selector="TabItem">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="TabItem:pressed">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="TabItem:is:pointerover /template/ ContentPresenter">
+            <Setter Property="TabItem.Foreground" Value="Red"/>
+        </Style>
+        
+        <Style Selector="Slider">
+            <Setter Property="Foreground" Value="LightGray"/>
+            <Setter Property="Background" Value="LightGray"/>
+        </Style>
+        
+        <Style Selector="Border.segment">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        
+        <Style Selector="Border.model_parameter">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="Padding" Value="3 1"/>
+            <Setter Property="Margin" Value="0 2"/>
+        </Style>
+        
+        <Style Selector="Border.header">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        </Style>
+        
+        <Style Selector="Label.inline_p0">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+        
+        <Style Selector="Label.muted_small">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+        
+        <Style Selector="Label.combo_item">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
     </Application.Styles>
 </Application>
