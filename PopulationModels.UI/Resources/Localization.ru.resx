@@ -1,0 +1,210 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="Algorithm" xml:space="preserve">
+        <value>Алогритм</value>
+    </data>
+    <data name="Bazykin" xml:space="preserve">
+        <value>Базыкин</value>
+    </data>
+    <data name="BazykinModel" xml:space="preserve">
+        <value>Модель Базыкина</value>
+    </data>
+    <data name="Bazykin_A" xml:space="preserve">
+        <value>Скорость размножения жертв</value>
+    </data>
+    <data name="BazykinModelSmall" xml:space="preserve">
+        <value>Модель Базыкина (малая)</value>
+    </data>
+    <data name="BazykinModelSunlight" xml:space="preserve">
+        <value>Модель Базыкина (освещённость)</value>
+    </data>
+    <data name="Bazykin_P" xml:space="preserve">
+        <value>Коэффициент, ограничивающий рост популяции</value>
+    </data>
+    <data name="Bazykin_C" xml:space="preserve">
+        <value>Смертность хищников в отсутствие добычи</value>
+    </data>
+    <data name="LotkaVolterraModel" xml:space="preserve">
+        <value>Модель Лотки-Вольтерра</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Язык</value>
+    </data>
+    <data name="MaxTime" xml:space="preserve">
+        <value>Максимальное время</value>
+    </data>
+    <data name="InitialValues" xml:space="preserve">
+        <value>Нач. значения</value>
+    </data>
+    <data name="InitialPredator" xml:space="preserve">
+        <value>Начальная полуляция хищников</value>
+    </data>
+    <data name="InitialPrey" xml:space="preserve">
+        <value>Начальная популяция жертв</value>
+    </data>
+    <data name="InitialResource" xml:space="preserve">
+        <value>Начальное количество ресурсов</value>
+    </data>
+    <data name="Model" xml:space="preserve">
+        <value>Модель</value>
+    </data>
+    <data name="ModelParameters" xml:space="preserve">
+        <value>Параметры</value>
+    </data>
+    <data name="Population" xml:space="preserve">
+        <value>Размер популяции</value>
+    </data>
+    <data name="Predators" xml:space="preserve">
+        <value>Хищники</value>
+    </data>
+    <data name="Prey" xml:space="preserve">
+        <value>Жертвы</value>
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value>Сброс</value>
+    </data>
+    <data name="Resource" xml:space="preserve">
+        <value>Ресурс</value>
+    </data>
+    <data name="Russian" xml:space="preserve">
+        <value>Русский</value>
+    </data>
+    <data name="Sunlight" xml:space="preserve">
+        <value>Освещённость</value>
+    </data>
+    <data name="Time" xml:space="preserve">
+        <value>Время</value>
+    </data>
+    <data name="TimePeriod" xml:space="preserve">
+        <value>Период смены дня/ночи</value>
+    </data>
+    <data name="TimeStep" xml:space="preserve">
+        <value>Временной шаг</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>Обновить</value>
+    </data>
+    <data name="Bazykin_B" xml:space="preserve">
+        <value>Смертность жертв от дейтсвий хищников</value>
+    </data>
+    <data name="Bazykin_D" xml:space="preserve">
+        <value>Скорость размножения хищников при поедании жертв</value>
+    </data>
+    <data name="Bazykin_E" xml:space="preserve">
+        <value>Смертность жертв под дейтвием конкуренции</value>
+    </data>
+    <data name="Bazykin_M" xml:space="preserve">
+        <value>Смертность хищников под дейтвием конкуренции</value>
+    </data>
+    <data name="Bazykin_R" xml:space="preserve">
+        <value>Скорость размножения жертв под влияния ресурса</value>
+    </data>
+    <data name="Bazykin_A_decrease" xml:space="preserve">
+        <value>Скорость размножения жертв снижается, постепенно хищники могут истребить жерт</value>
+    </data>
+    <data name="Bazykin_A_increase" xml:space="preserve">
+        <value>Скорость размножения жертв возрастает, что компенсирует нападения хищников</value>
+    </data>
+    <data name="Bazykin_B_decrease" xml:space="preserve">
+        <value>Популяция жертв менее восприимчива к нападениям хищников, смертность снижается</value>
+    </data>
+    <data name="Bazykin_B_increase" xml:space="preserve">
+        <value>Популяция жертв более восприимчива к нападениям хищников, смертность повышается</value>
+    </data>
+    <data name="Bazykin_C_decrease" xml:space="preserve">
+        <value>Хищники голодают меньше и могут существовать дольше в отсутсвии жертв</value>
+    </data>
+    <data name="Bazykin_C_increase" xml:space="preserve">
+        <value>Хищники голодают сильнее и начинают быстрее умирать в остутсвии жертв</value>
+    </data>
+    <data name="Bazykin_E_decrease" xml:space="preserve">
+        <value>Популяция меньше страдает от внутренней конкуренции</value>
+    </data>
+    <data name="Bazykin_E_increase" xml:space="preserve">
+        <value>Популяция сильнее страдает от внутренней конкуренции</value>
+    </data>
+    <data name="Bazykin_A_zero" xml:space="preserve">
+        <value>Жертвы не размножаются</value>
+    </data>
+    <data name="Bazykin_B_zero" xml:space="preserve">
+        <value>Популяция жертв не восприимчива к нападениям хищников и больше не вымирает (возможен экспоненциальный рост)</value>
+    </data>
+    <data name="Bazykin_C_zero" xml:space="preserve">
+        <value>Хищники не голодают в отсутсвии жертв и не погибают от голода</value>
+    </data>
+    <data name="Bazykin_D_decrease" xml:space="preserve">
+        <value>Скорость размножения хищников при поедании жертв уменьшается, хищники могут вымереть от голода</value>
+    </data>
+    <data name="Bazykin_D_increase" xml:space="preserve">
+        <value>Скорость размножения хищников при поедании жертв уменьшается, что компенсирует голод</value>
+    </data>
+    <data name="Bazykin_D_zero" xml:space="preserve">
+        <value>Хищники не размножаются при поедании жертв (экспоненциальное вымирание)</value>
+    </data>
+    <data name="Bazykin_E_zero" xml:space="preserve">
+        <value>Популяция не испытывает внутреннюю конкуренцию</value>
+    </data>
+    <data name="BazykinModel_description" xml:space="preserve">
+        <value>Модель "хищник-жертва" А. Д. Базыкина в отличие от модели Лотки-Вольтерра учитывает дополнительные факторы, влияющие на реальные системы хищник-жертва: нелинейность скорости размножения жертвы и конкуренцию внутри ее популяции, эффект насыщения хищника жертвой, конкуренцию хищников за жертв, нелинейный характер уничтожения жертвы хищником и иные эффекты.</value>
+    </data>
+    <data name="OdeParameters" xml:space="preserve">
+        <value>Параметры алгоритма</value>
+    </data>
+    <data name="Info" xml:space="preserve">
+        <value>Информация о модели</value>
+    </data>
+    <data name="Presentation" xml:space="preserve">
+        <value>Симуляция</value>
+    </data>
+    <data name="PlotType_phase" xml:space="preserve">
+        <value>Фазовый портрет</value>
+    </data>
+    <data name="PlotType_time" xml:space="preserve">
+        <value>Популяция-время</value>
+    </data>
+    <data name="PlotType_phase_description" xml:space="preserve">
+        <value>Единственная кривая, каждая точка которой отображает размер популяции жертв (ось X) и хищников (ось Y) в определённый момент времени.</value>
+    </data>
+    <data name="PlotType_time_description" xml:space="preserve">
+        <value>Изменение размеров популяций жертв и хищиков со временем отображаются как две независимые кривые на двумерной плоскости, где время соотвествует оси X, а размер популяции - оси Y.</value>
+    </data>
+    <data name="PlotType_phase_smalScatter" xml:space="preserve">
+        <value>Каждый {0}-й шаг</value>
+    </data>
+    <data name="Exit" xml:space="preserve">
+        <value>Завершить</value>
+    </data>
+    <data name="About" xml:space="preserve">
+        <value>О программе</value>
+    </data>
+    <data name="Program" xml:space="preserve">
+        <value>Параметры программы</value>
+    </data>
+    <data name="About_title" xml:space="preserve">
+        <value>Динамика популяций</value>
+    </data>
+    <data name="About_text" xml:space="preserve">
+        <value>Симуляция эволюции биологических популяций с помощью моделей "хищник-жертва" А. Д. Базыкина.</value>
+    </data>
+    <data name="Title" xml:space="preserve">
+        <value>Моделирование популяций</value>
+    </data>
+    <data name="About_author" xml:space="preserve">
+        <value>Илья Трофимов (github.com/IliaTrofimov)</value>
+    </data>
+    <data name="About_sources" xml:space="preserve">
+        <value>Колпак, Е. П. О моделях А. Д. Базыкина «хищник — жертва» / Е. П. Колпак, Е. В. Горыня, Е. А. Селицкая. — Текст : непосредственный // Молодой ученый. — 2016. — № 2 (106). — С. 12-20. — URL: https://moluch.ru/archive/106/25234/</value>
+    </data>
+</root>

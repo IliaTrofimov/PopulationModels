@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vmParameters="using:PopulationModels.UI.ViewModels.ModelParameter"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lang="clr-namespace:PopulationModels.UI.Resources"
+        mc:Ignorable="d" 
+        x:Class="PopulationModels.UI.Views.RangeModelParameterView"
+        x:DataType="vmParameters:RangeModelParameter">
+  
+    <Border Classes="model_parameter">
+        <DockPanel Classes="model_parameter_inner">
+            <DockPanel DockPanel.Dock="Top">
+                <TextBlock DockPanel.Dock="Left" Classes="parameter">
+                    <Label Content="{Binding Name}" Classes="inline_p0" MinWidth="15"/>
+                    <Label Content="=" Classes="inline_p0"/>
+                    <Label Content="{Binding Value, StringFormat=F3}" Classes="inline_p0" />
+                    <Button Classes="reset" Content="?">
+                        <Button.Flyout>
+                            <Flyout Content="{Binding Description}"/>
+                        </Button.Flyout>
+                    </Button>
+                </TextBlock>      
+                <Button DockPanel.Dock="Right" Classes="reset"
+                        Content="{x:Static lang:Localization.Reset}"
+                        Command="{Binding Reset}" 
+                        Flyout="{Binding DefaultValue}"/>
+            </DockPanel>
+                          
+            <Slider DockPanel.Dock="Top" Padding="0 -12 0 -5" Margin="0"
+                    Value="{Binding Value}" 
+                    Minimum="{Binding MinValue}"
+                    Maximum="{Binding MaxValue}"
+                    TickPlacement="BottomRight" TickFrequency="{Binding TicksStep}" />
+            
+            <Label Content="{Binding MaxValue}" DockPanel.Dock="Right" Classes="inline_p0 muted_small"/>
+            <Label Content="{Binding MinValue}" DockPanel.Dock="Left" Classes="inline_p0 muted_small"/>
+        </DockPanel>
+    </Border>
+</UserControl>

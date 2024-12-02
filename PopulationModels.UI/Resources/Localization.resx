@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="ModelParameters" xml:space="preserve">
+        <value>Parameters</value>
+    </data>
+    <data name="InitialValues" xml:space="preserve">
+        <value>Initial values</value>
+    </data>
+    <data name="Algorithm" xml:space="preserve">
+        <value>ODE Solver</value>
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value>Reset</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>Update</value>
+    </data>
+    <data name="TimeStep" xml:space="preserve">
+        <value>Time step</value>
+    </data>
+    <data name="MaxTime" xml:space="preserve">
+        <value>Max time</value>
+    </data>
+    <data name="Time" xml:space="preserve">
+        <value>Time</value>
+    </data>
+    <data name="Population" xml:space="preserve">
+        <value>Population size</value>
+    </data>
+    <data name="Bazykin" xml:space="preserve">
+        <value>Bazykin</value>
+    </data>
+    <data name="BazykinModel" xml:space="preserve">
+        <value>Bazykin's model</value>
+    </data>
+    <data name="Sunlight" xml:space="preserve">
+        <value>Sunlight</value>
+    </data>
+    <data name="Resource" xml:space="preserve">
+        <value>Resource</value>
+    </data>
+    <data name="Prey" xml:space="preserve">
+        <value>Prey</value>
+    </data>
+    <data name="Predators" xml:space="preserve">
+        <value>Predators</value>
+    </data>
+    <data name="InitialPrey" xml:space="preserve">
+        <value>Initial population of the prey</value>
+    </data>
+    <data name="InitialPredator" xml:space="preserve">
+        <value>Initial population of the predators</value>
+    </data>
+    <data name="InitialResource" xml:space="preserve">
+        <value>Initial amount of resource</value>
+    </data>
+    <data name="Model" xml:space="preserve">
+        <value>Model</value>
+    </data>
+    <data name="Bazykin_A" xml:space="preserve">
+        <value>Reproduction rate of prey</value>
+    </data>
+    <data name="Bazykin_B" xml:space="preserve">
+        <value>The death rate of prey from actions of predators</value>
+    </data>
+    <data name="Bazykin_C" xml:space="preserve">
+        <value>The death rate of predators in the absence of prey</value>
+    </data>
+    <data name="Bazykin_D" xml:space="preserve">
+        <value>Reproduction rate of predators from eating prey</value>
+    </data>
+    <data name="Bazykin_E" xml:space="preserve">
+        <value>The death rate of prey from self-competition</value>
+    </data>
+    <data name="Bazykin_M" xml:space="preserve">
+        <value>The death rate of predators from self-competition</value>
+    </data>
+    <data name="Bazykin_P" xml:space="preserve">
+        <value>Population's growth threshold coefficient</value>
+    </data>
+    <data name="TimePeriod" xml:space="preserve">
+        <value>Time period</value>
+    </data>
+    <data name="Bazykin_R" xml:space="preserve">
+        <value>Prey's growth coefficient (resource based)</value>
+    </data>
+    <data name="BazykinModelSmall" xml:space="preserve">
+        <value>Bazykin's model (small)</value>
+    </data>
+    <data name="BazykinModelSunlight" xml:space="preserve">
+        <value>Bazykin's model (sunlight)</value>
+    </data>
+    <data name="LotkaVolterraModel" xml:space="preserve">
+        <value>Lotka-Volterra model</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Language</value>
+    </data>
+    <data name="English" xml:space="preserve">
+        <value>English</value>
+    </data>
+    <data name="Russian" xml:space="preserve">
+        <value>Русский</value>
+    </data>
+    <data name="Bazykin_A_increase" xml:space="preserve">
+        <value>Prey population is growing faster and may withstand predators actions more efficiently</value>
+    </data>
+    <data name="Bazykin_B_increase" xml:space="preserve">
+        <value>Prey population is more vulnurable to predators actions, population decay is faster</value>
+    </data>
+    <data name="Bazykin_A_decrease" xml:space="preserve">
+        <value>Prey population is growing slower and can be overwhelmed by predators</value>
+    </data>
+    <data name="Bazykin_D_increase" xml:space="preserve">
+        <value>Predators population is growing faster from eating prey</value>
+    </data>
+    <data name="Bazykin_D_decrease" xml:space="preserve">
+        <value>Predators population is growing slower from eating prey</value>
+    </data>
+    <data name="Bazykin_B_decrease" xml:space="preserve">
+        <value>Prey population is less vulnurable to predators actions, population decay is slower</value>
+    </data>
+    <data name="Bazykin_C_increase" xml:space="preserve">
+        <value>Predators population is starving faster and can dying quicker without prey</value>
+    </data>
+    <data name="Bazykin_C_decrease" xml:space="preserve">
+        <value>Predators population is starving slower and can hold on without prey longer</value>
+    </data>
+    <data name="Bazykin_E_increase" xml:space="preserve">
+        <value>The population suffers more from self-competition</value>
+    </data>
+    <data name="Bazykin_E_decrease" xml:space="preserve">
+        <value>The population suffers less from self-competition</value>
+    </data>
+    <data name="Bazykin_A_zero" xml:space="preserve">
+        <value>Prey population is not growing on its own</value>
+    </data>
+    <data name="Bazykin_B_zero" xml:space="preserve">
+        <value>Prey population is invulnurable to predators actions, population will not decay (exponential growth is now possible)</value>
+    </data>
+    <data name="Bazykin_C_zero" xml:space="preserve">
+        <value>Predators population is not starving and dying without prey</value>
+    </data>
+    <data name="Bazykin_D_zero" xml:space="preserve">
+        <value>Predators population is not growing from eating prey (exponential decay)</value>
+    </data>
+    <data name="Bazykin_E_zero" xml:space="preserve">
+        <value>The population is not suffers from self-competition</value>
+    </data>
+    <data name="Bazykin_P_increase" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Bazykin_P_decrease" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Bazykin_P_zero" xml:space="preserve">
+        <value />
+    </data>
+    <data name="BazykinModel_description" xml:space="preserve">
+        <value>The predator-prey model by A. D. Bazykin, in contrast to the Lotka-Volterra model, takes into account additional factors affecting real predator-prey systems: the nonlinearity of the reproduction rate of the victim and competition within its population, the effect of saturation of the predator with the victim, competition of predators for victims, the nonlinear nature of the destruction of the victim by the predator and other effects.</value>
+    </data>
+    <data name="OdeParameters" xml:space="preserve">
+        <value>ODE solver parameters</value>
+    </data>
+    <data name="Presentation" xml:space="preserve">
+        <value>Simulation</value>
+    </data>
+    <data name="Info" xml:space="preserve">
+        <value>Model information</value>
+    </data>
+    <data name="PlotType_time" xml:space="preserve">
+        <value>Population dynamics</value>
+    </data>
+    <data name="PlotType_phase" xml:space="preserve">
+        <value>Phase plane</value>
+    </data>
+    <data name="PlotType_phase_description" xml:space="preserve">
+        <value>A single curve where each point represents the size of the prey (X axis) and predator (Y axis) population at a certain point in time.</value>
+    </data>
+    <data name="PlotType_time_description" xml:space="preserve">
+        <value>The change in the populations of prey and predators over time is displayed as two independent curves on a two-dimensional plane, where time corresponds to the X axis and the population size corresponds to the Y axis.</value>
+    </data>
+    <data name="PlotType_phase_smalScatter" xml:space="preserve">
+        <value>Eeach {0} step</value>
+    </data>
+    <data name="PlotType_phase_largeScatter" xml:space="preserve">
+        <value />
+    </data>
+    <data name="About" xml:space="preserve">
+        <value>About</value>
+    </data>
+    <data name="Exit" xml:space="preserve">
+        <value>Exit</value>
+    </data>
+    <data name="Program" xml:space="preserve">
+        <value>Program options</value>
+    </data>
+    <data name="About_title" xml:space="preserve">
+        <value>Population dynamics</value>
+    </data>
+    <data name="About_text" xml:space="preserve">
+        <value>Population dynamics simulation with A. D. Bazykin "prey-predator" models.</value>
+    </data>
+    <data name="Title" xml:space="preserve">
+        <value>Population Models</value>
+    </data>
+    <data name="About_author" xml:space="preserve">
+        <value>Ilia Trofimov (github.com/IliaTrofimov)</value>
+    </data>
+    <data name="About_sources" xml:space="preserve">
+        <value>https://moluch.ru/archive/106/25234</value>
+    </data>
+</root>

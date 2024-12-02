@@ -1,161 +1,200 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:PopulationModels.UI.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:scottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
-        mc:Ignorable="d" 
-        d:DesignWidth="800" d:DesignHeight="400" MinWidth="400" MinHeight="400"
-        x:Class="PopulationModels.UI.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel" Background="WhiteSmoke"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="PopulationModels.UI"  Loaded="MainWindow_Loaded">
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:vm="using:PopulationModels.UI.ViewModels"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:scottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+                xmlns:lang="clr-namespace:PopulationModels.UI.Resources"
+                xmlns:views="clr-namespace:PopulationModels.UI.Views"
+                mc:Ignorable="d" 
+                d:DesignWidth="800" d:DesignHeight="400" MinWidth="450" MinHeight="400"
+                x:Class="PopulationModels.UI.Views.MainWindow"
+                x:DataType="vm:MainWindowViewModel" 
+                Title="{x:Static lang:Localization.Title}" 
+                Loaded="MainWindow_Loaded">
 
-  <Design.DataContext>
-    <vm:MainWindowViewModel/>
-  </Design.DataContext>
-
-  <Grid Margin="3 5" Background="WhiteSmoke">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition MinWidth="170" Width="0.25*"/>
-      <ColumnDefinition />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition MaxHeight="90"/>
-      <RowDefinition />
-    </Grid.RowDefinitions>
-
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
     
-    <!-- Parameters view -->
-    <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Classes="segment" >
-      <Grid>
-        <Grid.RowDefinitions>
-          <RowDefinition MinHeight="320" />
-          <RowDefinition MaxHeight="80" MinHeight="61"/>
-        </Grid.RowDefinitions>       
+    <Grid RowDefinitions="25,*" x:Name="MainGridLayout">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="170" MaxWidth="300"/>
+            <ColumnDefinition MinWidth="280"/>
+        </Grid.ColumnDefinitions>
         
-        <TabControl Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WrapSelection="False" Padding="0">
-          <TabItem Header="Параметры" HorizontalAlignment="Stretch">
-            <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="0 0 5 0">
-              <ItemsControl ItemsSource="{Binding SelectedOdeModel.Parameters}">
-                <ItemsControl.ItemTemplate>
-                  <DataTemplate>
+        <!-- Menu bar -->
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="MainMenuBar">
+            <MenuItem Header="{x:Static lang:Localization.Program}">
+                <MenuItem Header="{x:Static lang:Localization.About}" Click="ShowAboutWindow_Click"/>
+                <MenuItem Header="{x:Static lang:Localization.Language}">
+                    <MenuItem Header="{x:Static lang:Localization.English}" Click="SwitchLanguage_Click" Tag="en-EN"/>
+                    <MenuItem Header="{x:Static lang:Localization.Russian}" Click="SwitchLanguage_Click" Tag="ru-RU" />
+                </MenuItem>     
+                <Separator/>
+                <MenuItem Header="{x:Static lang:Localization.Exit}" Click="Close_Click"/>
+            </MenuItem>
+        </Menu>
+        
+        <!-- Parameters view -->
+        <Border Grid.Row="1" Grid.Column="0" Classes="segment" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="320" />
+                    <RowDefinition MaxHeight="80" MinHeight="61"/>
+                </Grid.RowDefinitions>             
                     
-                    <Border Classes="model_parameter">
-                      <DockPanel>
-                        <TextBlock Margin="0" FontSize="13" DockPanel.Dock="Top" ContextFlyout="{Binding Description}">
-                          <Label Content="{Binding Name}" Classes="inline_p0" MinWidth="15"/>
-                          <Label Content="=" Classes="inline_p0"/>
-                          <Label Content="{Binding Value, StringFormat=F3}" Classes="inline_p0" />
-                        </TextBlock>
-                    
-                        <Slider Value="{Binding Value}" Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}"
-                                TickPlacement="BottomRight" TickFrequency="1" Padding="0 -12 0 -5" DockPanel.Dock="Top" Margin="0"/>
-                    
-                        <Label Content="{Binding MaxValue}" DockPanel.Dock="Right" Classes="inline_p0 muted_small"/>
-                        <Label Content="{Binding MinValue}" DockPanel.Dock="Left" Classes="inline_p0 muted_small"/>
-                      </DockPanel>
-                    </Border>
-                  </DataTemplate>
-                </ItemsControl.ItemTemplate>
-              </ItemsControl>
-            </ScrollViewer>
-          </TabItem>
-          
-          <TabItem Header="Нач. значения" >
-            <ScrollViewer VerticalAlignment="Stretch">
-              <ItemsControl ItemsSource="{Binding SelectedOdeModel.InitialValues}" HorizontalAlignment="Stretch" Padding="0 0 5 0">
-                <ItemsControl.ItemTemplate>
-                  <DataTemplate>
-                    <Border Classes="model_parameter">
-                      <DockPanel>
-                        <TextBlock Margin="0" FontSize="13" DockPanel.Dock="Top" ContextFlyout="{Binding Description}">
-                          <Label Content="{Binding Name}" Classes="inline_p0" MinWidth="15"/>
-                          <Label Content="=" Classes="inline_p0"/>
-                          <Label Content="{Binding Value, StringFormat=F3}" Classes="inline_p0" />
-                        </TextBlock>
-                    
-                        <Slider Value="{Binding Value}" Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}"
-                                TickPlacement="BottomRight" TickFrequency="1" Padding="0 -12 0 -5" DockPanel.Dock="Top" Margin="0"/>
-                    
-                        <Label Content="{Binding MaxValue}" DockPanel.Dock="Right" Classes="inline_p0 muted_small"/>
-                        <Label Content="{Binding MinValue}" DockPanel.Dock="Left" Classes="inline_p0 muted_small"/>
-                      </DockPanel>
-                    </Border>
-                  </DataTemplate>
-                </ItemsControl.ItemTemplate>
-              </ItemsControl>
-            </ScrollViewer>
-          </TabItem>
-        </TabControl>
+                <TabControl Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WrapSelection="False" Padding="0">
+                        
+                    <TabItem Header="{x:Static lang:Localization.ModelParameters}" HorizontalAlignment="Stretch">
+                        <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="5 0 15 0">
+                            <ItemsControl ItemsSource="{Binding OdeModel.Value.Parameters}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <views:RangeModelParameterView Parameter="{Binding }"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                        
+                    <TabItem Header="{x:Static lang:Localization.InitialValues}" >
+                        <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="5 0 15 0">
+                            <ItemsControl ItemsSource="{Binding OdeModel.Value.InitialValues}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <views:RangeModelParameterView Parameter="{Binding }"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                        
+                </TabControl>
 
-        <!-- Time parameters -->
-        <Border Grid.Row="1" Padding="3 1 3 10" BorderBrush="Gray" BorderThickness="0 2 0 0" VerticalAlignment="Bottom">
-          <Grid ColumnDefinitions="* *">
-            <Grid.RowDefinitions>
-              <RowDefinition MinHeight="10" MaxHeight="30"/>
-              <RowDefinition/>
-            </Grid.RowDefinitions>
+                    <!-- Time parameters -->
+                <Border Grid.Row="1" Padding="5 1 5 10" BorderBrush="Gray" BorderThickness="0 1.5 0 0" VerticalAlignment="Bottom">
+                    <Grid ColumnDefinitions="* *">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="10" MaxHeight="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                            
+                        <Label Grid.Row="0" Grid.Column="0" 
+                                     Content="{Binding TimeStep.Name}" 
+                                     Classes="inline_p0 time_param"/>
+                            
+                        <ComboBox Grid.Row="1" Grid.Column="0" SelectedIndex="{Binding TimeStep.SelectedIndex}" ItemsSource="{Binding TimeStep.Values}" Margin="0 0 5 0" Classes="time_param">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding}" Padding="0" FontSize="11"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Label Grid.Row="0" Grid.Column="1" 
+                                     Content="{Binding MaxTime.Name}"
+                                     Classes="inline_p0 time_param"/>
+                            
+                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="{Binding MaxTime.SelectedIndex}" ItemsSource="{Binding MaxTime.Values}" Margin="5 0 0 0" Classes="time_param">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding}" Classes="combo_item"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
             
-            <Label Grid.Row="0" Grid.Column="0" Content="{Binding TimeStep.Name}" ContextFlyout="{Binding TimeStep.Description}" FontSize="16" Classes="inline_p0" HorizontalAlignment="Center"/>
-            <ComboBox Grid.Row="1" Grid.Column="0" SelectedIndex="{Binding TimeStep.SelectedIndex}" ItemsSource="{Binding TimeStep.Values}" Margin="0 0 5 0" HorizontalAlignment="Stretch" FontSize="11">
-              <ComboBox.ItemTemplate>
-                <DataTemplate>
-                  <Label Content="{Binding}" Padding="0" FontSize="11"/>
-                </DataTemplate>
-              </ComboBox.ItemTemplate>
-            </ComboBox>
-
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding MaxTime.Name}" ContextFlyout="{Binding MaxTime.Description}" FontSize="16" Classes="inline_p0" HorizontalAlignment="Center"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="{Binding MaxTime.SelectedIndex}" ItemsSource="{Binding MaxTime.Values}" Margin="5 0 0 0" HorizontalAlignment="Stretch" FontSize="11">
-              <ComboBox.ItemTemplate>
-                <DataTemplate>
-                  <Label Content="{Binding}" Classes="combo_item"/>
-                </DataTemplate>
-              </ComboBox.ItemTemplate>
-            </ComboBox>
-          </Grid>
+        <!-- Plotting and info -->
+        <Border Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" Classes="segment">
+            <TabControl>
+                <!-- Plotting -->
+                <TabItem Header="{x:Static lang:Localization.Presentation}">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <RadioButton GroupName="Plot Type" Margin="0 0 15 0"
+                                                     IsChecked="{Binding !DrawPhasePlot}">
+                                <TextBlock FontSize="11">
+                                    <Label Content="{x:Static lang:Localization.PlotType_time}"/>
+                                    <Button Classes="reset" Content="?">
+                                        <Button.Flyout>
+                                            <Flyout>
+                                                <TextBlock Text="{x:Static lang:Localization.PlotType_time_description}"
+                                                                     MaxWidth="250"
+                                                                     TextWrapping="WrapWithOverflow"/>
+                                            </Flyout>
+                                        </Button.Flyout>
+                                    </Button>
+                                </TextBlock>
+                            </RadioButton>
+                            <RadioButton GroupName="Plot Type" Margin="0 0 5 0"
+                                                     IsChecked="{Binding DrawPhasePlot}">
+                                <TextBlock FontSize="11">
+                                    <Label Content="{x:Static lang:Localization.PlotType_phase}"/>
+                                    <Button Classes="reset" Content="?">
+                                        <Button.Flyout>
+                                            <Flyout>
+                                                <TextBlock Text="{x:Static lang:Localization.PlotType_phase_description}"
+                                                                     MaxWidth="250"
+                                                                     TextWrapping="WrapWithOverflow"/>
+                                            </Flyout>
+                                        </Button.Flyout>
+                                    </Button>
+                                </TextBlock>
+                            </RadioButton>
+                        </StackPanel>
+                            
+                        <scottPlot:AvaPlot x:Name="PlotMain"    DockPanel.Dock="Top" VerticalAlignment="Stretch" />
+                    </DockPanel>
+                </TabItem>
+                
+                <!-- Info -->
+                <TabItem Header="{x:Static lang:Localization.Info}">
+                    <DockPanel >
+                        <Border DockPanel.Dock="Top" Classes="header" Padding="2 5" >
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Content="{x:Static lang:Localization.Model}" FontSize="14" VerticalAlignment="Center"/>
+                                    
+                                <ComboBox SelectedIndex="{Binding OdeModel.SelectedIndex}" 
+                                                    ItemsSource="{Binding OdeModel.Values}" 
+                                                    Margin="10 0 20 0" 
+                                                    VerticalAlignment="Center">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}" Classes="combo_item"/> 
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                    
+                                <Label Content="{x:Static lang:Localization.Algorithm}" FontSize="14" VerticalAlignment="Center"/>
+                                <ComboBox SelectedIndex="{Binding OdeAlgorithm.SelectedIndex}" 
+                                                    ItemsSource="{Binding OdeAlgorithm.Values}"
+                                                    Margin="10 0 20 0"
+                                                    VerticalAlignment="Center">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding}" Classes="combo_item"/> 
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                        </Border>
+                    
+                        <ScrollViewer>
+                            <StackPanel Orientation="Vertical" >
+                                <TextBlock Padding="5 10" TextWrapping="WrapWithOverflow"
+                                                     Margin="0 0 0 10"
+                                                     Text="{Binding OdeModel.Value.Formula}"/>
+                                <TextBlock Padding="5 10" TextWrapping="WrapWithOverflow"
+                                                     Text="{Binding OdeModel.Value.Description}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
         </Border>
-      </Grid>
-    </Border>
-
-    
-    <!-- Model info -->
-    <Border Grid.Row="0" Grid.Column="1" Margin="5 0 0 3" Classes="segment">
-      <DockPanel>
-        <Border DockPanel.Dock="Top" Classes="header">
-          <StackPanel Orientation="Horizontal">
-            <Label Content="Модель" FontSize="16"/>
-            <ComboBox SelectedIndex="{Binding SelectedOdeModelIndex}" ItemsSource="{Binding KnownOdeModels}" Margin="15 0 0 0">
-              <ComboBox.ItemTemplate>
-                <DataTemplate>
-                  <Label Content="{Binding}" Classes="combo_item"/>
-                </DataTemplate>
-              </ComboBox.ItemTemplate>
-            </ComboBox>
-            <HyperlinkButton Content="Обновить" Focusable="True" FontSize="12" Click="ForceUpdate_Click"/>
-          </StackPanel>
-        </Border>
-        <TextBlock Text="{Binding SelectedOdeModel.Formula}" Padding="5 2" DockPanel.Dock="Top" />
-        <ItemsControl ItemsSource="{Binding SelectedOdeModel.InitialValues}">
-          <ItemsControl.ItemTemplate>
-            <DataTemplate>
-              <Label Content="{Binding}"/>
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
-      </DockPanel>
-    </Border>
-    
-    
-    <!-- Plotting -->
-    <Border Grid.Row="1" Grid.Column="1" Margin="5 0 0 0" Classes="segment" Padding="3">
-      <DockPanel Margin="0 0 0 3">
-        <Border DockPanel.Dock="Top" Classes="header">
-          <Label FontSize="13">Динамика популяции</Label>
-        </Border>
-        <scottPlot:AvaPlot Name="PlotMain" />
-      </DockPanel>
-    </Border>
-  </Grid>
+    </Grid> 
 </Window>

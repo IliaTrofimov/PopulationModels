@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopulationModels.UI", "Popu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3A1D9690-B88C-4714-8499-39435C9005CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopulationModels.Computing", "PopulationModels.Computing\PopulationModels.Computing.csproj", "{26CAEAF0-E0FA-44A5-A1C7-D0E568E0948D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopulationModels.UnitTests", "PopulationModels.UnitTests\PopulationModels.UnitTests.csproj", "{6E6DB36B-EC22-44E8-A3DA-9C431F435A1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +21,14 @@ Global
 		{A85DBA2E-220B-4A13-AE73-05FF59133462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A85DBA2E-220B-4A13-AE73-05FF59133462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A85DBA2E-220B-4A13-AE73-05FF59133462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26CAEAF0-E0FA-44A5-A1C7-D0E568E0948D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CAEAF0-E0FA-44A5-A1C7-D0E568E0948D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CAEAF0-E0FA-44A5-A1C7-D0E568E0948D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CAEAF0-E0FA-44A5-A1C7-D0E568E0948D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E6DB36B-EC22-44E8-A3DA-9C431F435A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6DB36B-EC22-44E8-A3DA-9C431F435A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6DB36B-EC22-44E8-A3DA-9C431F435A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6DB36B-EC22-44E8-A3DA-9C431F435A1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
