@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="PopulationModels.UI/App.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+        <entry key="PopulationModels.UI/Views/AboutWindow.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+        <entry key="PopulationModels.UI/Views/App.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+        <entry key="PopulationModels.UI/Views/MainWindow.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+        <entry key="PopulationModels.UI/Views/ModelParameterControl.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+        <entry key="PopulationModels.UI/Views/ModelParameterView.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+        <entry key="PopulationModels.UI/Views/OdeExampleView.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+        <entry key="PopulationModels.UI/Views/RangeModelParameterView.axaml" value="PopulationModels.UI/PopulationModels.UI.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
