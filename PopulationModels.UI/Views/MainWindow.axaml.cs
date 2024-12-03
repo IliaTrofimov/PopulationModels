@@ -1,12 +1,13 @@
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Controls.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
-using PopulationModels.Computing.Matrix;
 using PopulationModels.Computing.Ode;
 using PopulationModels.UI.OdeModels;
 using PopulationModels.UI.Plotting;
@@ -22,9 +23,8 @@ public partial class MainWindow : Window
     private const int MAX_PLOT_POINTS = 5000;
     
     private MainWindowViewModel VM = null!;
-    private ContinuousMatrix solution;
-    private OdeInitialState odeInitialState;
-    private readonly TimeSpan renderLockTimeout = TimeSpan.FromMilliseconds(15);
+    private OdeSolution currentSolution = null!;
+    private bool hasSolutions;
     
     
     public MainWindow()
@@ -36,32 +36,35 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         PlotMain.Plot.InitPlots();
-        RenderPlots(odeInitialState, solution, false);
+        RenderPlots(currentSolution, false);
     }
-
     
 #region Event handlers
     
     private void MainWindow_Loaded(object? _, RoutedEventArgs e)
     {
         VM = DataContext as MainWindowViewModel ?? throw new NullReferenceException("DataContext must be of type MainWindowViewModel");
-        Debug.WriteLine("[EVENT] MainWindow_Loaded");
+        Debug.WriteLine($"[EVENT] [{Environment.CurrentManagedThreadId}] MainWindow_Loaded");
         
         PlotMain.Plot.InitPlots();
-        ExecuteSolution(false, true).GetAwaiter().GetResult();
+        ExecuteSolutionSync();
         
         VM.PropertyChanged += ViewModelProperty_Changed;
+
+        DispatcherTimer.Run(PlotterFunc, TimeSpan.FromMilliseconds(5), DispatcherPriority.MaxValue);
     }
     
     private void ViewModelProperty_Changed(object? sender, PropertyChangedEventArgs e)
     {
         var annotation = (e as ModelParameterChangedEventArgs)?.Description;
-        ExecuteSolution(true, annotation: annotation);
+        Debug.WriteLine($"[ACTION] [{Environment.CurrentManagedThreadId}] Property {e.PropertyName} changed");
+
+        ExecuteSolutionAsync(annotation);
     }
     
     private void ShowAboutWindow_Click(object? sender, RoutedEventArgs e)
     {
-        if (!AboutWindow.IsCreated){}
+        if (!AboutWindow.IsCreated)
             new AboutWindow().ShowDialog(this);
     }
     
@@ -91,60 +94,73 @@ public partial class MainWindow : Window
     
 #region Actions
 
-    private async Task ExecuteSolution(bool clean = false, bool sync = false, string? annotation = null)
+    private void ExecuteSolutionSync()
     {
         var initialValues = VM.OdeModel.Value.InitialValues.Select(x => x.Value).ToArray();
-        odeInitialState = new OdeInitialState(0.0, VM.MaxTime, VM.TimeStep, initialValues);
+        var initialState = new OdeInitialState(0.0, VM.MaxTime, VM.TimeStep, initialValues);
+        
+        var sw = Stopwatch.StartNew();
+        var solution = OdeCalculator.Solve(VM.OdeModel.Value.OdeSystem, initialState, VM.OdeAlgorithm.Value, MAX_PLOT_POINTS);
+        
+        #if DEBUG
+        Debug.WriteLine($"[ACTION] [{Environment.CurrentManagedThreadId}] Solved in {sw.ElapsedMilliseconds:F3} ms");
+        #endif
+        
+        currentSolution = new OdeSolution { InitialState = initialState, SolutionMatrix = solution };
+        RenderPlots(currentSolution, false);
+    }
+    
+    private bool PlotterFunc()
+    {
+        if (!hasSolutions) return true;
+        
+        hasSolutions = false;
+        var lastSolution = currentSolution;
 
-        if (sync)
-        {
-            solution.Dispose();
+        if (!Monitor.TryEnter(PlotMain.Plot.Sync, 30)) return true;
+
+        RenderPlots(lastSolution, true);
         
-            var sw = Stopwatch.StartNew();
-            solution = OdeCalculator.Solve(VM.OdeModel.Value.OdeSystem, odeInitialState, VM.OdeAlgorithm.Value, MAX_PLOT_POINTS);
-            sw.Stop();
-            Debug.WriteLine($"[ACTION] Solved in {sw.ElapsedMilliseconds:F3} ms");
-            RenderPlots(odeInitialState, solution, clean, annotation);
-            return;
-        }
-        if (Monitor.TryEnter(PlotMain.Plot.Sync, renderLockTimeout))
-        {        
-            solution.Dispose();
-        
-            var sw = Stopwatch.StartNew();
-            solution = OdeCalculator.Solve(VM.OdeModel.Value.OdeSystem, odeInitialState, VM.OdeAlgorithm.Value, MAX_PLOT_POINTS);
-            sw.Stop();
-            Debug.WriteLine($"[ACTION] Solved in {sw.ElapsedMilliseconds:F3} ms");
-            
-            await Dispatcher.UIThread.InvokeAsync(() => RenderPlots(odeInitialState, solution, clean, annotation));
-            Monitor.Exit(PlotMain.Plot.Sync);
-        }
-        else
-        {
-            Debug.WriteLine($"[ACTION] Render lock {PlotMain.Plot.Sync.GetHashCode():x} timeout");
-        }
+        Monitor.Exit(PlotMain.Plot.Sync);
+        return true;
     }
 
-    private void RenderPlots(OdeInitialState state, ContinuousMatrix currentSolution, bool clean,
-                             string? description = null)
+    
+    private Task ExecuteSolutionAsync(string? annotation = null)
     {
-        #if DEBUG
-        Debug.WriteLine($"[ACTION] RenderPlots: solution is {currentSolution}");
-        #endif
-
-        if (clean) 
-            PlotMain.Plot.ClearPlots();
-
-        if (!string.IsNullOrEmpty(description))
+        return Task.Run(() =>
         {
-            var annotation = PlotMain.Plot.Add.Annotation(description, Alignment.UpperRight);
+            var initialValues = VM.OdeModel.Value.InitialValues.Select(x => x.Value).ToArray();
+            var initialState = new OdeInitialState(0.0, VM.MaxTime, VM.TimeStep, initialValues);
+
+            var sw = Stopwatch.StartNew();
+            var solution = OdeCalculator.Solve(VM.OdeModel.Value.OdeSystem, initialState, VM.OdeAlgorithm.Value, MAX_PLOT_POINTS);
+            currentSolution = new OdeSolution { Description = annotation, InitialState = initialState, SolutionMatrix = solution};
+            ;
+            hasSolutions = true;
+            
+            #if DEBUG
+            Debug.WriteLine($"[ACTION] [{Environment.CurrentManagedThreadId}] Solved in {sw.ElapsedMilliseconds:F3} ms. Solution is {{solution}}");
+            #else 
+            Debug.WriteLine($"[ACTION] Solved in {sw.ElapsedMilliseconds:F3} ms.");
+            #endif
+        });
+    }
+
+    private void RenderPlots(OdeSolution solution, bool clean)
+    {
+        if (clean) PlotMain.Plot.ClearPlots();
+
+        if (!string.IsNullOrEmpty(solution.Description))
+        {
+            var annotation = PlotMain.Plot.Add.Annotation(solution.Description, Alignment.UpperRight);
             annotation.LabelStyle.BackgroundColor = Colors.Aqua.Lighten(0.8);
             annotation.LabelStyle.SubpixelText = true;
         }
         
         var (maxX, maxY) = VM.DrawPhasePlot
-            ? PlotMain.Plot.PhasePlot(currentSolution, state, VM.OdeModel.Value, "predators ~ prey")
-            : PlotMain.Plot.SolutionsPlot(currentSolution, state, VM.OdeModel.Value, Localization.Time, Localization.Population);
+            ? PlotMain.Plot.PhasePlot(solution.SolutionMatrix, solution.InitialState, VM.OdeModel.Value, "predators ~ prey")
+            : PlotMain.Plot.SolutionsPlot(solution.SolutionMatrix, solution.InitialState, VM.OdeModel.Value, Localization.Time, Localization.Population);
         
         PlotMain.Plot.SetAxisRules(maxX, maxY);
         PlotMain.Plot.Axes.AutoScale();

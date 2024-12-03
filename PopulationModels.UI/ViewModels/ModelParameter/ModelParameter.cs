@@ -17,6 +17,7 @@ public abstract class ModelParameter<T> : INotifyPropertyChanged
 
     public string Name { get; }
     public virtual string? Description { get; }
+    public bool IsReadOnly { get; set; }
     public virtual T Value
     {
         get => currentValue; 

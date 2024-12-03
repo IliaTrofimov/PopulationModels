@@ -54,10 +54,10 @@ public sealed class BazykinModelSmall : ViewModelBase, IOdeModel
         if (eventArgs is not ModelParameterChangedEventArgs parameterChangedArgs) return;
         
         var description = Math.Abs(parameterChangedArgs.NewValue) <= 5*1e-3
-            ? BazykinModel2.GetParameterZeroedDescription(parameterChangedArgs.ParameterName)
+            ? BazykinModel.GetParameterZeroedDescription(parameterChangedArgs.ParameterName)
             : parameterChangedArgs.NewValue - parameterChangedArgs.OldValue < 0
-                ? BazykinModel2.GetParameterDecreasedDescription(parameterChangedArgs.ParameterName)
-                : BazykinModel2.GetParameterIncreasedDescription(parameterChangedArgs.ParameterName);
+                ? BazykinModel.GetParameterDecreasedDescription(parameterChangedArgs.ParameterName)
+                : BazykinModel.GetParameterIncreasedDescription(parameterChangedArgs.ParameterName);
         
         OnPropertyChanged(new ModelParameterChangedEventArgs(parameterChangedArgs, description));
     }

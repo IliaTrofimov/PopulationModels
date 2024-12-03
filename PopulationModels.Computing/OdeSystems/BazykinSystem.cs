@@ -4,7 +4,9 @@ namespace PopulationModels.Computing.OdeSystems;
 
 
 /// <summary>
-/// Implementation 
+/// Implementation of A. D. Bazykin's model:<br/>
+/// <i>x' = Ax - Bxy / (1 + px) - Ex^2</i><br/>
+/// <i>y' = -Cy + Dxy / (1 + px) - Mx^2</i>
 /// </summary>
 public class BazykinSystem : IOdeSystem
 {
@@ -15,7 +17,7 @@ public class BazykinSystem : IOdeSystem
         Set(a, b, c, d, e, m, p);
     }
     
-    public IOdeSystem Set(double a, double b, double c, double d, double e, double m, double p)
+    public BazykinSystem Set(double a, double b, double c, double d, double e, double m, double p)
     {
         this.a = a;
         this.b = b;

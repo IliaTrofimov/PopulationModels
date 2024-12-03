@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using PopulationModels.Computing.Matrix;
+using System.ComponentModel;
 using PopulationModels.Computing.OdeSystems;
 using PopulationModels.UI.Resources;
 using PopulationModels.UI.ViewModels;
@@ -8,8 +7,7 @@ using PopulationModels.UI.ViewModels.ModelParameter;
 
 namespace PopulationModels.UI.OdeModels;
 
-
-public sealed class BazykinModel2 : ViewModelBase, IOdeModel
+public sealed class BazykinModelWithTime : ViewModelBase, IOdeModel
 {
     private readonly RangeModelParameter a = new BazykinParameterA();
     private readonly RangeModelParameter b = new BazykinParameterB();
@@ -18,15 +16,18 @@ public sealed class BazykinModel2 : ViewModelBase, IOdeModel
     private readonly RangeModelParameter d = new BazykinParameterD();
     private readonly RangeModelParameter m = new BazykinParameterM();
     private readonly RangeModelParameter p = new BazykinParameterP();
+    private readonly RangeModelParameter dayPeriod = new BazykinParameterDayPeriod();
+
+    private readonly BazykinSystemWithTime bazykinSystem;
     
-    private readonly BazykinSystem bazykinSystem;
-    
-    public IOdeSystem OdeSystem => bazykinSystem.Set(a, b, c, d, e, m, p);
+    public IOdeSystem OdeSystem => bazykinSystem.Set(a, b, c, d, e, m, p, dayPeriod);
     public IReadOnlyList<RangeModelParameter> Parameters { get; }
     public IReadOnlyList<RangeModelParameter> InitialValues { get; }
-    public string Name => Localization.BazykinModel;
-    public string Formula => "x' = Ax - Bxy / (1 + px) - Ex^2\n" +
-                             "y' = -Cy + Dxy / (1 + px) - My^2";
+    public string Name => Localization.BazykinModel + " time";
+    public string Formula => "x' = Ax - B(t)*xy / (1 + px) - Ex^2\n" +
+                             "y' = -Cy + D(t)*xy / (1 + px) - My^2\n" +
+                             "B(t) = B_0 * sin(pi / dayPeriod * t)\n" +
+                             "D(t) = D_0 * sin(pi / dayPeriod * t)";
     public string Description => Localization.BazykinModel_description;
     public IEnumerable<string> Examples => [];
     
@@ -34,18 +35,20 @@ public sealed class BazykinModel2 : ViewModelBase, IOdeModel
     {
         0 => "x(t): " + Localization.Prey,
         1 => "y(t): " + Localization.Predators,
+        2 => "day(t)",
         _ => throw new ArgumentOutOfRangeException(nameof(index))
     };
 
 
-    public BazykinModel2()
+    public BazykinModelWithTime()
     {
-        bazykinSystem = new BazykinSystem(a, b, c, d, e, m, p);
-        Parameters = [a, b, c, d, e, m, p];
+        bazykinSystem = new BazykinSystemWithTime(a, b, c, d, e, m, p, dayPeriod);
+        Parameters = [a, b, c, d, e, m, p, dayPeriod];
         InitialValues =
         [
             new BazykinParameterX0(),
-            new BazykinParameterY0()
+            new BazykinParameterY0(),
+            new RangeModelParameter("day period", 0, 0, 0) { IsReadOnly = true },
         ];
         
         a.PropertyChanged += ParameterChangedHandler;
@@ -55,6 +58,7 @@ public sealed class BazykinModel2 : ViewModelBase, IOdeModel
         e.PropertyChanged += ParameterChangedHandler;
         m.PropertyChanged += ParameterChangedHandler;
         p.PropertyChanged += ParameterChangedHandler;
+        dayPeriod.PropertyChanged += ParameterChangedHandler;
     }
 
     private void ParameterChangedHandler(object? sender, PropertyChangedEventArgs eventArgs)

@@ -45,6 +45,15 @@ public sealed class BazykinParameterP(double current = 1, double min = 0, double
     public override string Description => Resources.Localization.Bazykin_P;
 }
 
+public sealed class BazykinParameterDayPeriod(double current = 1, double min = 0.1, double max = 10) 
+    : RangeModelParameter("day period", current, min, max)
+{
+    public override string Description => "day period";
+    public override bool IsDisplayable => true;
+    public override bool IsPeriodical => true;
+}
+
+
 public sealed class BazykinParameterX0(double current = 30, double max = 500) 
     : RangeModelParameter("X0", current, 0, max)
 {

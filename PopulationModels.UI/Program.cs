@@ -16,7 +16,7 @@ internal sealed class Program
     {
         TaskScheduler.UnobservedTaskException += (sender, ex) =>
         {
-            Debug.WriteLine($"Unobserved task exception:\n[SENDER] {sender?.GetType()}\n[MESSAGE]{ex.Exception}");
+            Debug.WriteLine($"\n[{Environment.CurrentManagedThreadId}] Unobserved task exception:\n[SENDER] {sender?.GetType()}\n[MESSAGE] {ex.Exception}\n");
         };
             
         BuildAvaloniaApp()

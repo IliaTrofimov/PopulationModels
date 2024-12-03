@@ -7,7 +7,9 @@ public class RangeModelParameter : ModelParameter<double>
 {
     public double MaxValue { get; }
     public double MinValue { get; }
-
+    public virtual bool IsDisplayable { get; }
+    public virtual bool IsPeriodical { get;  }
+    
     public override double Value
     {
         get => currentValue;

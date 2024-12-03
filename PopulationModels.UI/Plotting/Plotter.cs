@@ -1,6 +1,8 @@
+using System.Linq;
 using PopulationModels.Computing.Matrix;
 using PopulationModels.Computing.Ode;
 using PopulationModels.UI.OdeModels;
+using PopulationModels.UI.ViewModels.ModelParameter;
 using ScottPlot;
 using ScottPlot.AxisRules;
 using ScottPlot.Plottables;
@@ -81,6 +83,7 @@ public static class Plotter
         
         return (_timeData[^1], maxY);
     }
+    
     
     public static (double maxX, double maxY) PhasePlot(this Plot plot, ContinuousMatrix solution, OdeInitialState initialState, IOdeModel ode, string label)
     {

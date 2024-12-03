@@ -7,7 +7,8 @@
                 xmlns:lang="clr-namespace:PopulationModels.UI.Resources"
                 xmlns:views="clr-namespace:PopulationModels.UI.Views"
                 mc:Ignorable="d" 
-                d:DesignWidth="800" d:DesignHeight="400" MinWidth="450" MinHeight="400"
+                d:DesignWidth="800" d:DesignHeight="400" 
+                MinWidth="550" MinHeight="400"
                 x:Class="PopulationModels.UI.Views.MainWindow"
                 x:DataType="vm:MainWindowViewModel" 
                 Title="{x:Static lang:Localization.Title}" 
@@ -20,13 +21,12 @@
     <Grid RowDefinitions="25,*" x:Name="MainGridLayout">
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="170" MaxWidth="300"/>
-            <ColumnDefinition MinWidth="280"/>
+            <ColumnDefinition MinWidth="340"/>
         </Grid.ColumnDefinitions>
         
         <!-- Menu bar -->
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="MainMenuBar">
             <MenuItem Header="{x:Static lang:Localization.Program}">
-                <MenuItem Header="{x:Static lang:Localization.About}" Click="ShowAboutWindow_Click"/>
                 <MenuItem Header="{x:Static lang:Localization.Language}">
                     <MenuItem Header="{x:Static lang:Localization.English}" Click="SwitchLanguage_Click" Tag="en-EN"/>
                     <MenuItem Header="{x:Static lang:Localization.Russian}" Click="SwitchLanguage_Click" Tag="ru-RU" />
@@ -34,14 +34,16 @@
                 <Separator/>
                 <MenuItem Header="{x:Static lang:Localization.Exit}" Click="Close_Click"/>
             </MenuItem>
+            <MenuItem Header="{x:Static lang:Localization.About}" Click="ShowAboutWindow_Click"/>
         </Menu>
+        
         
         <!-- Parameters view -->
         <Border Grid.Row="1" Grid.Column="0" Classes="segment" >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition MinHeight="320" />
-                    <RowDefinition MaxHeight="80" MinHeight="61"/>
+                    <RowDefinition MinHeight="305" />
+                    <RowDefinition MaxHeight="80" MinHeight="75"/>
                 </Grid.RowDefinitions>             
                     
                 <TabControl Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WrapSelection="False" Padding="0">
@@ -107,7 +109,8 @@
                 </Border>
             </Grid>
         </Border>
-            
+      
+        
         <!-- Plotting and info -->
         <Border Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" Classes="segment">
             <TabControl>
@@ -116,38 +119,38 @@
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom">
                             <RadioButton GroupName="Plot Type" Margin="0 0 15 0"
-                                                     IsChecked="{Binding !DrawPhasePlot}">
+                                         IsChecked="{Binding !DrawPhasePlot}">
                                 <TextBlock FontSize="11">
                                     <Label Content="{x:Static lang:Localization.PlotType_time}"/>
                                     <Button Classes="reset" Content="?">
                                         <Button.Flyout>
                                             <Flyout>
                                                 <TextBlock Text="{x:Static lang:Localization.PlotType_time_description}"
-                                                                     MaxWidth="250"
-                                                                     TextWrapping="WrapWithOverflow"/>
+                                                           MaxWidth="250"
+                                                           TextWrapping="WrapWithOverflow"/>
                                             </Flyout>
                                         </Button.Flyout>
                                     </Button>
                                 </TextBlock>
                             </RadioButton>
                             <RadioButton GroupName="Plot Type" Margin="0 0 5 0"
-                                                     IsChecked="{Binding DrawPhasePlot}">
+                                         IsChecked="{Binding DrawPhasePlot}">
                                 <TextBlock FontSize="11">
                                     <Label Content="{x:Static lang:Localization.PlotType_phase}"/>
                                     <Button Classes="reset" Content="?">
                                         <Button.Flyout>
                                             <Flyout>
                                                 <TextBlock Text="{x:Static lang:Localization.PlotType_phase_description}"
-                                                                     MaxWidth="250"
-                                                                     TextWrapping="WrapWithOverflow"/>
+                                                           MaxWidth="250"
+                                                           TextWrapping="WrapWithOverflow"/>
                                             </Flyout>
                                         </Button.Flyout>
                                     </Button>
                                 </TextBlock>
                             </RadioButton>
                         </StackPanel>
-                            
-                        <scottPlot:AvaPlot x:Name="PlotMain"    DockPanel.Dock="Top" VerticalAlignment="Stretch" />
+                        
+                        <scottPlot:AvaPlot x:Name="PlotMain" DockPanel.Dock="Top" VerticalAlignment="Stretch" />
                     </DockPanel>
                 </TabItem>
                 
@@ -159,9 +162,9 @@
                                 <Label Content="{x:Static lang:Localization.Model}" FontSize="14" VerticalAlignment="Center"/>
                                     
                                 <ComboBox SelectedIndex="{Binding OdeModel.SelectedIndex}" 
-                                                    ItemsSource="{Binding OdeModel.Values}" 
-                                                    Margin="10 0 20 0" 
-                                                    VerticalAlignment="Center">
+                                          ItemsSource="{Binding OdeModel.Values}" 
+                                          Margin="10 0 20 0" 
+                                          VerticalAlignment="Center">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <Label Content="{Binding Name}" Classes="combo_item"/> 
@@ -171,9 +174,9 @@
                                     
                                 <Label Content="{x:Static lang:Localization.Algorithm}" FontSize="14" VerticalAlignment="Center"/>
                                 <ComboBox SelectedIndex="{Binding OdeAlgorithm.SelectedIndex}" 
-                                                    ItemsSource="{Binding OdeAlgorithm.Values}"
-                                                    Margin="10 0 20 0"
-                                                    VerticalAlignment="Center">
+                                          ItemsSource="{Binding OdeAlgorithm.Values}"
+                                          Margin="10 0 20 0"
+                                          VerticalAlignment="Center">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <Label Content="{Binding}" Classes="combo_item"/> 
@@ -186,10 +189,10 @@
                         <ScrollViewer>
                             <StackPanel Orientation="Vertical" >
                                 <TextBlock Padding="5 10" TextWrapping="WrapWithOverflow"
-                                                     Margin="0 0 0 10"
-                                                     Text="{Binding OdeModel.Value.Formula}"/>
+                                           Margin="0 0 0 10"
+                                           Text="{Binding OdeModel.Value.Formula}"/>
                                 <TextBlock Padding="5 10" TextWrapping="WrapWithOverflow"
-                                                     Text="{Binding OdeModel.Value.Description}"/>
+                                           Text="{Binding OdeModel.Value.Description}"/>
                             </StackPanel>
                         </ScrollViewer>
                     </DockPanel>

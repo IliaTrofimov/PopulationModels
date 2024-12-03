@@ -12,8 +12,9 @@ public class MainWindowViewModel : ViewModelBase
     public EnumModelParameter<Solvers> OdeAlgorithm { get; } = new ("Algorithm", Solvers.Rk2);
     public SelectableModelParameter<IOdeModel> OdeModel { get; } = new ("OdeModel",
     [
-        new BazykinModel2(),
+        new BazykinModel(),
         new BazykinModelSmall(),
+        new BazykinModelWithTime(),
     ]);
 
     private bool drawPhasePlot;
