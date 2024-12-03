@@ -1,11 +1,5 @@
 ﻿namespace PopulationModels.UI.ViewModels.ModelParameter;
 
-
-public interface ISelectableModelParameter
-{
-    public int SelectedIndex { get; set; }
-}
-
 public class SelectableModelParameter<T> : ModelParameter<T>, ISelectableModelParameter
     where T: notnull
 {

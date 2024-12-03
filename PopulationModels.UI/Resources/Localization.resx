@@ -194,7 +194,7 @@
         <value>Phase plane</value>
     </data>
     <data name="PlotType_phase_description" xml:space="preserve">
-        <value>A single curve where each point represents the size of the prey (X axis) and predator (Y axis) population at a certain point in time.</value>
+        <value>A curve where each point represents the size of the prey (X axis) and predator (Y axis) population at a certain point in time.</value>
     </data>
     <data name="PlotType_time_description" xml:space="preserve">
         <value>The change in the populations of prey and predators over time is displayed as two independent curves on a two-dimensional plane, where time corresponds to the X axis and the population size corresponds to the Y axis.</value>
