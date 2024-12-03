@@ -28,8 +28,9 @@ public class SelectableModelParameter<T> : ModelParameter<T>, ISelectableModelPa
             if (value < 0 || value >= values.Length)
                 value = 0;
             if (value == selectedIndex) 
-                return;    
-                
+                return;
+
+            selectedIndex = value;
             SetValue(values[value]);
         }
     }
