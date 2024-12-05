@@ -37,13 +37,13 @@ $$
 Для ОС Windows (протестировано на 10) достаточно загрузить последний релиз и запустить .exe файл в нём. Для Mac OS на ARM возможно запустить приложение из Visual Studio или Rider, пока что не удалось собрать проект в цельную программу для Mac.
 
 ## Интерфейс
+![Анимация](https://github.com/user-attachments/assets/1bc3bb56-aaa0-4fad-b540-8ae89acfb867)
+
 ![image](https://github.com/user-attachments/assets/169a20e0-49c8-4c7c-b884-da22dddace6f)
 
 ![image](https://github.com/user-attachments/assets/ac6568bc-06dd-4e98-917f-3b0dd945f04e)
 
 ![image](https://github.com/user-attachments/assets/04798c35-47be-4b24-bdb5-caf0a45e3e26)
-
-![Анимация](https://github.com/user-attachments/assets/1bc3bb56-aaa0-4fad-b540-8ae89acfb867)
 
 ## Источники
 - [1] - Базыкин А. Д. Нелинейная динамика взаимодействующих популяций. Москва-Ижевск: Институт компьютерных технологий, 2003. — 368 с.
