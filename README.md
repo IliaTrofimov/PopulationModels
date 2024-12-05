@@ -38,6 +38,9 @@ $$
 
 ![image](https://github.com/user-attachments/assets/ac6568bc-06dd-4e98-917f-3b0dd945f04e)
 
+![image](https://github.com/user-attachments/assets/04798c35-47be-4b24-bdb5-caf0a45e3e26)
+
+
 
 ## Источники
 - [1] - Базыкин А. Д. Нелинейная динамика взаимодействующих популяций. Москва-Ижевск: Институт компьютерных технологий, 2003. — 368 с.
