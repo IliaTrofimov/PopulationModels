@@ -34,7 +34,7 @@ $$
 по возможности все опреации с векторами выполняются на месте, без создания копий.
 
 ## Использование
-Для ОС Windows (протестировано на 10) достаточно загрузить последний релиз и запустить .exe файл в нём. Для Mac OS на ARM возможно запустить приложение из Visual Studio или Rider, пока что не удалось собрать проект в цельную программу для Mac.
+Скачайте в разделе [Релизы](https://github.com/IliaTrofimov/PopulationModels/releases) подходящий для вашей ОС архив с исполняемым файов, распакуйте его и запустите приложение.
 
 ## Интерфейс
 ![Анимация](https://github.com/user-attachments/assets/1bc3bb56-aaa0-4fad-b540-8ae89acfb867)
@@ -85,7 +85,7 @@ Application is built with .NET 8.0 and uses [AvaloniaUI](https://avaloniaui.net/
 I also had implemented my own version of Runge-Kutta method in C# to optimize memory usage (I am storing solution in one continuous pulled `Array<double>` to reduce allocations and GC events).
 
 ## Usage
-For Windows (tested on  Windows 10) you should download latest release and run .exe file from it. To run on Mac OS with ARM you should clone repo and run UI project in Visual Studio or in Rider (currently I don't know how to pack it as Mac application).
+Download archive suitable for your OS from [Releases](https://github.com/IliaTrofimov/PopulationModels/releases) page, unzip it and run the application file. Tested for Windows 10 (x86) and Mac OS (arm).
 
 ## Sources
 - [1] - Базыкин А. Д. Нелинейная динамика взаимодействующих популяций. Москва-Ижевск: Институт компьютерных технологий, 2003. — 368 с.
