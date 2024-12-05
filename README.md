@@ -33,14 +33,15 @@ $$
 для хранения результата и всех промежуточных данных используетя один непрерывный массив (см. `ArrayPool`), чтобы снизить число аллокаций и событий сборки мусора; 
 по возможности все опреации с векторами выполняются на месте, без создания копий.
 
+## Использование
+Для ОС Windows (протестировано на 10) достаточно загрузить последний релиз и запустить .exe файл в нём. Для Mac OS на ARM возможно запустить приложение из Visual Studio или Rider, пока что не удалось собрать проект в цельную программу для Mac.
+
 ## Интерфейс
 ![image](https://github.com/user-attachments/assets/169a20e0-49c8-4c7c-b884-da22dddace6f)
 
 ![image](https://github.com/user-attachments/assets/ac6568bc-06dd-4e98-917f-3b0dd945f04e)
 
 ![image](https://github.com/user-attachments/assets/04798c35-47be-4b24-bdb5-caf0a45e3e26)
-
-
 
 ## Источники
 - [1] - Базыкин А. Д. Нелинейная динамика взаимодействующих популяций. Москва-Ижевск: Институт компьютерных технологий, 2003. — 368 с.
@@ -80,6 +81,9 @@ $$
 
 Application is built with .NET 8.0 and uses [AvaloniaUI](https://avaloniaui.net/) for cross-platform user interface (instead of WPF) and [ScottPlot](https://scottplot.net/) for plotting. 
 I also had implemented my own version of Runge-Kutta method in C# to optimize memory usage (I am storing solution in one continuous pulled `Array<double>` to reduce allocations and GC events).
+
+## Usage
+For Windows (tested on  Windows 10) you should download latest release and run .exe file from it. To run on Mac OS with ARM you should clone repo and run UI project in Visual Studio or in Rider (currently I don't know how to pack it as Mac application).
 
 ## Sources
 - [1] - Базыкин А. Д. Нелинейная динамика взаимодействующих популяций. Москва-Ижевск: Институт компьютерных технологий, 2003. — 368 с.
