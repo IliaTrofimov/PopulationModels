@@ -6,6 +6,8 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <Company>Ilia Trofimov</Company>
+    <Product>PopulationModels</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -57,4 +59,14 @@
   <ItemGroup>
     <ProjectReference Include="..\PopulationModels.Computing\PopulationModels.Computing.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="Info.plist" Condition=" '$(OS)' == 'Unix' ">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="publish-mac.sh" Condition=" '$(OS)' == 'Unix' ">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
 </Project>
