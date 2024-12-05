@@ -1,8 +1,11 @@
-# Моделирование эволюции биологических популяций (русский)
+# Моделирование эволюции биологических популяций
+[English](https://github.com/IliaTrofimov/PopulationModels/tree/master#population-dynamics-modeling)
+
 Симуляция и визуализация развития биологических популяций пары "хищник-жертва" по модели А. Д. Базыкина [1]. За основу взята информация из [статьи](https://moluch.ru/archive/106/25234/) [2].
 
 ## Описание модели 
 На данный момент программа реализует следующую систему дифференциальных уравнений для описания динамики "хищник-жертва":
+
 $$
 \begin{cases}
 \frac{dx}{dt} = Ax - B \frac{xy}{1 + px} - Ex^2 \\
@@ -30,10 +33,21 @@ $$
 для хранения результата и всех промежуточных данных используетя один непрерывный массив (см. `ArrayPool`), чтобы снизить число аллокаций и событий сборки мусора; 
 по возможности все опреации с векторами выполняются на месте, без создания копий.
 
+## Интерфейс
+![image](https://github.com/user-attachments/assets/169a20e0-49c8-4c7c-b884-da22dddace6f)
+
+![image](https://github.com/user-attachments/assets/ac6568bc-06dd-4e98-917f-3b0dd945f04e)
+
+
+## Источники
+- [1] - Базыкин А. Д. Нелинейная динамика взаимодействующих популяций. Москва-Ижевск: Институт компьютерных технологий, 2003. — 368 с.
+- [2] - Колпак, Е. П. О моделях А. Д. Базыкина «хищник — жертва» / Е. П. Колпак, Е. В. Горыня, Е. А. Селицкая. — Текст : непосредственный // Молодой ученый. — 2016. — № 2 (106). — С. 12-20. — URL: https://moluch.ru/archive/106/25234/ (дата обращения: 05.12.2024).
+
+
 ---
 
-# Population dynamics modeling
 
+# Population dynamics modeling
 Simulation and visualization of evolution of biological populations of prey and predator spicies. This application implements differential equation system invented by A. D. Bazykin [1]. Inspired by [this](https://moluch.ru/archive/106/25234/) parer [2].
 
 ## Model description
